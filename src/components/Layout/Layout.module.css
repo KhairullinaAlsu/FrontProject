@@ -18,7 +18,7 @@
     background: #FFF;
 }
 
-.box span{
+.box a{
     position: relative;
     margin-left: 40px;
     right: 30px;
@@ -27,11 +27,11 @@
     color: #000;
 }
 
-.box span:hover {
+.box a:hover {
     color: #73744A;
     text-decoration: underline;
 }
-.box span.active {
+.box a.active {
     color: #73744A;
     text-decoration: underline;
 }

@@ -1,45 +1,41 @@
 "use client"
 import {FC} from 'react';
 import styles from './Layout.module.css'
-import {usePathname, useRouter} from "next/navigation";
+import {usePathname} from "next/navigation";
 
 
 
 const Layout: FC = () => {
-  const router = useRouter();
   const pathname = usePathname();
 
-  const handleNavigation = (path: string) => {
-    router.push(path);
-  };
 
   return (
       <div className={styles.container}>
         <div className={styles.box}>
-        <span
-            onClick={() => handleNavigation('/FrontProject')}
+        <a
+            href="/FrontProject"
             className={pathname === '/FrontProject' ? styles.active : ''}
         >
           Main page
-        </span>
-          <span
-              onClick={() => handleNavigation('/FrontProject/assignments')}
+        </a>
+          <a
+              href="/FrontProject/assignments"
               className={pathname === '/FrontProject/assignments' ? styles.active : ''}
           >
           Assignments
-        </span>
-          <span
-              onClick={() => handleNavigation('/FrontProject/classes')}
+        </a>
+          <a
+              href="/FrontProject/classes"
               className={pathname === '/FrontProject/classes' ? styles.active : ''}
           >
           Classes
-        </span>
-          <span
-              onClick={() => handleNavigation('/FrontProject/login')}
+        </a>
+          <a
+              href="/FrontProject/login"
               className={pathname === '/FrontProject/login' ? styles.active : ''}
           >
           Log in
-        </span>
+        </a>
         </div>
       </div>
   );
