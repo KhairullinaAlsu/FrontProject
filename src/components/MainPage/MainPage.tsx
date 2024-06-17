@@ -12,7 +12,7 @@ const MainPage: FC = () => {
       <div className={styles.container}>
         <span className={styles.header}>Class and assignment management</span>
         <span className={styles.text}>On this site you can log in and track your class schedule, add, edit tasks that are given to you during your studies</span>
-        <Link href={"FrontProject/auth"}>
+        <Link href={"/FrontProject/auth"}>
           <button className={styles.button}>Sign in</button>
         </Link>
       </div>
