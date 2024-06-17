@@ -1,41 +1,28 @@
 "use client"
-import {FC} from 'react';
+import {FC, useEffect} from 'react';
 import styles from './Layout.module.css'
-import {usePathname} from "next/navigation";
 
 
 
 const Layout: FC = () => {
-  const pathname = usePathname();
+  useEffect(() => {
+    const links = document.querySelectorAll(`.${styles.box} a`);
+    const currentPath = window.location.pathname;
 
+    links.forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add(styles.active);
+      }
+    });
+  }, []);
 
   return (
       <div className={styles.container}>
         <div className={styles.box}>
-        <a
-            href="/FrontProject"
-            className={pathname === '/FrontProject' ? styles.active : ''}
-        >
-          Main page
-        </a>
-          <a
-              href="/FrontProject/assignments"
-              className={pathname === '/FrontProject/assignments' ? styles.active : ''}
-          >
-          Assignments
-        </a>
-          <a
-              href="/FrontProject/classes"
-              className={pathname === '/FrontProject/classes' ? styles.active : ''}
-          >
-          Classes
-        </a>
-          <a
-              href="/FrontProject/login"
-              className={pathname === '/FrontProject/login' ? styles.active : ''}
-          >
-          Log in
-        </a>
+          <a href="/FrontProject" className="main">Main page</a>
+          <a href="/FrontProject/assignments" className="assignments">Assignments</a>
+          <a href="/FrontProject/classes" className="classes">Classes</a>
+          <a href="/FrontProject/login" className="log_in">Log in</a>
         </div>
       </div>
   );
