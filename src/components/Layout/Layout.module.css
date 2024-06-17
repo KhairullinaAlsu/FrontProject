@@ -18,7 +18,7 @@
     background: #FFF;
 }
 
-.box a{
+.box span{
     position: relative;
     margin-left: 40px;
     right: 30px;
@@ -27,12 +27,13 @@
     color: #000;
 }
 
-.box a:hover {
+.box span:hover {
     color: #73744A;
     text-decoration: underline;
 }
-.box a:active {
+.box span.active {
     color: #73744A;
+    text-decoration: underline;
 }
 
 /*.main, .assignments, .classes, .log_in{*/

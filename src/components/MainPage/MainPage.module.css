@@ -26,7 +26,7 @@
 
 .button{
     position: relative;
-    top: 600px;
+    top: 4em;
     display: inline-flex;
     padding: 10px 41px 10px 42px;
     justify-content: center;
