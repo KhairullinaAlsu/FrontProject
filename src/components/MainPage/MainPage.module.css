@@ -1,0 +1,42 @@
+.container{
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 71px;
+}
+
+.header{
+    color: #73744A;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.text{
+    color: #000;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 44px;
+}
+
+.button{
+    position: relative;
+    top: 600px;
+    display: inline-flex;
+    padding: 10px 41px 10px 42px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background: #000;
+    color: #FFF;
+    text-align: center;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

@@ -1,0 +1,41 @@
+.container{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-top: 22px;
+}
+.box{
+    display: inline-flex;
+    width: 95%;
+    height: 65px;
+    padding: 5px 11px 5px 297px;
+    margin: auto;
+    justify-content: flex-end;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 30px;
+    background: #FFF;
+}
+
+.box a{
+    position: relative;
+    margin-left: 40px;
+    right: 30px;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    font-size: 24px;
+    color: #000;
+}
+
+.box a:hover {
+    color: #73744A;
+    text-decoration: underline;
+}
+.box a:active {
+    color: #73744A;
+}
+
+/*.main, .assignments, .classes, .log_in{*/
+/*    */
+/*}*/
+
