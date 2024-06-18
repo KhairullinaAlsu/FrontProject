@@ -19,3 +19,12 @@ export async function DELETE(request: Request) {
   await prisma.assignment.delete({ where: { id } });
   return NextResponse.json({ id });
 }
+
+export async function PUT(request: Request) {
+  const { id, ...data } = await request.json();
+  const assignment = await prisma.assignment.update({
+    where: { id },
+    data,
+  });
+  return NextResponse.json(assignment);
+}

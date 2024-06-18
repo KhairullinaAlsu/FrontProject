@@ -1,13 +1,14 @@
-// app/page.tsx
+"use client"
 
-import AddAssignmentForm from './AssignmentForm';
-import AssignmentList from './AssignmentList';
+import { useState } from 'react';
+import AssignmentList from './AssignmentsList/AssignmentList';
 
 export default function Home() {
+  const [showAddForm, setShowAddForm] = useState(false);
+
   return (
       <div>
         <h1>Assignments</h1>
-        <AddAssignmentForm />
         <AssignmentList />
       </div>
   );
