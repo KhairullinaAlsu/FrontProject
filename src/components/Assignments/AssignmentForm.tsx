@@ -5,7 +5,7 @@ import useSWR from 'swr';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const AddAssignmentForm = () => {
+const AssignmentForm = () => {
   const { mutate } = useSWR('/api/assignments', fetcher);
   const [formData, setFormData] = useState({
     name: '',
@@ -54,4 +54,4 @@ const AddAssignmentForm = () => {
   );
 };
 
-export default AddAssignmentForm;
+export default AssignmentForm;
