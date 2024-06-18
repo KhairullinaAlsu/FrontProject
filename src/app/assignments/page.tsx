@@ -1,14 +1,16 @@
 import {FC} from 'react';
+import {Assignments} from "@/components";
+
 
 
 
 const Page: FC = () => {
-  console.log('Render Page');
+
 
 
   return (
       <>
-
+        <Assignments/>
       </>
   );
 };
