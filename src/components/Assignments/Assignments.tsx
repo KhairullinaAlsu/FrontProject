@@ -3,11 +3,15 @@ import { useEffect, useState } from 'react';
 import AssignmentForm from './AssignmentForm';
 import AssignmentList from './AssignmentList';
 
-const Assignments = () => {
+const Home = () => {
   const [assignments, setAssignments] = useState<any[]>([]);
 
   const fetchAssignments = async () => {
     const res = await fetch('/api/assignments');
+    if (!res.ok) {
+      console.error("Failed to fetch assignments");
+      return;
+    }
     const data = await res.json();
     setAssignments(data);
   };
@@ -38,4 +42,4 @@ const Assignments = () => {
   );
 };
 
-export default Assignments;
+export default Home;

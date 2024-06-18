@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const assignmentsFilePath = path.join(process.cwd(), 'src/data/assignments.json');
+const assignmentsFilePath = path.join(process.cwd(), 'data', 'assignments.json');
 
 export const readAssignments = () => {
   const fileContents = fs.readFileSync(assignmentsFilePath, 'utf-8');
