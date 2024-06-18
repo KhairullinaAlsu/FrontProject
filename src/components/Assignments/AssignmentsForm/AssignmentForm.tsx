@@ -1,6 +1,6 @@
 "use client"
 
-import {FC, useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import useSWR from 'swr';
 import {Assignment} from "@/components/Types/types";
 import {useFormik} from "formik";
@@ -20,7 +20,7 @@ const AssignmentForm:FC<AssignmentFormProps> = ({ assignment, onClose }) => {
     initialValues: {
       name: '',
       details: '',
-      courseId: 0,
+      courseId: '',
       courseName: '',
       dueDate: '',
       completed: false,
@@ -74,9 +74,6 @@ const AssignmentForm:FC<AssignmentFormProps> = ({ assignment, onClose }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
           />
-          {formik.touched.details && formik.errors.details ? (
-              <div>{formik.errors.details}</div>
-          ) : null}
         </div>
         <div>
           <input
@@ -132,6 +129,7 @@ const AssignmentForm:FC<AssignmentFormProps> = ({ assignment, onClose }) => {
           ) : null}
         </div>
         <button type="submit">{assignment ? 'Update' : 'Add'} Assignment</button>
+        <button onClick={onClose}>Close</button>
       </form>
   );
 };

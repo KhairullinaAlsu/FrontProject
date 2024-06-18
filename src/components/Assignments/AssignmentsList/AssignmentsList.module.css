@@ -1,0 +1,23 @@
+.container{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-top: 40px;
+    font-size: 25px;
+}
+
+.node button{
+    margin-top: 20px;
+}
+
+.node span{
+    margin-top: 10px;
+    display: flex;
+    flex-flow: column;
+}
+
+.add{
+    position: relative;
+    top: 200px;
+}

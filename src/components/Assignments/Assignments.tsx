@@ -1,14 +1,13 @@
 "use client"
 
-import { useState } from 'react';
 import AssignmentList from './AssignmentsList/AssignmentList';
+import styles from './Assignments.module.css'
 
 export default function Home() {
-  const [showAddForm, setShowAddForm] = useState(false);
 
   return (
       <div>
-        <h1>Assignments</h1>
+        <h1 className={styles.header}>Assignments</h1>
         <AssignmentList />
       </div>
   );
