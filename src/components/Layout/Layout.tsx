@@ -19,10 +19,10 @@ const Layout: FC = () => {
   return (
       <div className={styles.container}>
         <div className={styles.box}>
-          <a href="/FrontProject" className="main">Main page</a>
-          <a href="/FrontProject/assignments" className="assignments">Assignments</a>
-          <a href="/FrontProject/classes" className="classes">Classes</a>
-          <a href="/FrontProject/login" className="log_in">Log in</a>
+          <a href="/" className="main">Main page</a>
+          <a href="/assignments" className="assignments">Assignments</a>
+          <a href="/classes" className="classes">Classes</a>
+          <a href="/login" className="log_in">Log in</a>
         </div>
       </div>
   );

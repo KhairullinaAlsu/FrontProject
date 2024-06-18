@@ -26,13 +26,13 @@ const AssignmentManager = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/FrontProject/api/assignments')
+    fetch('/api/assignments')
         .then((res) => res.json())
         .then((data) => setAssignments(data));
   }, []);
 
   const addAssignment = async () => {
-    const res = await fetch('/FrontProject/api/assignments', {
+    const res = await fetch('/api/assignments', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
