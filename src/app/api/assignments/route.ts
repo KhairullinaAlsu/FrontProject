@@ -12,10 +12,12 @@ type Assignment = {
   completed: 'no' | 'yes';
 };
 
-
 const dataFilePath = path.join(process.cwd(), 'src/data/assignments.json');
 
 const readData = (): Assignment[] => {
+  if (!fs.existsSync(dataFilePath)) {
+    return [];
+  }
   const data = fs.readFileSync(dataFilePath, 'utf-8');
   return JSON.parse(data);
 };
