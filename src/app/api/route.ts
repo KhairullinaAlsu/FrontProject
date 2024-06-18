@@ -12,7 +12,7 @@ type Assignment = {
   completed: 'no' | 'yes';
 };
 
-const dataFilePath = path.join(process.cwd(), 'src/temp/assignments.json');
+const dataFilePath = path.join(process.cwd(), 'temp/assignments.json');
 
 const readData = (): Assignment[] => {
   if (!fs.existsSync(dataFilePath)) {
