@@ -1,52 +1,57 @@
-import { useState } from 'react';
+"use client"
 
-const AssignmentForm = ({ onAdd }: { onAdd: () => void }) => {
+import { useState } from 'react';
+import useSWR from 'swr';
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+const AddAssignmentForm = () => {
+  const { mutate } = useSWR('/api/assignments', fetcher);
   const [formData, setFormData] = useState({
     name: '',
     details: '',
     courseId: '',
     courseName: '',
     dueDate: '',
-    completed: 'no',
+    completed: false,
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value,
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await fetch('/api/assignments', {
+    const response = await fetch('/api/assignments', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...formData, id: Date.now().toString() }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
     });
-    onAdd();
-    setFormData({
-      name: '',
-      details: '',
-      courseId: '',
-      courseName: '',
-      dueDate: '',
-      completed: 'no',
-    });
+    if (response.ok) {
+      mutate(); // обновление данных после добавления
+    }
   };
 
   return (
       <form onSubmit={handleSubmit}>
-        <input name="name" placeholder="Assignment Name" value={formData.name} onChange={handleChange} required />
-        <input name="details" placeholder="Assignment Details" value={formData.details} onChange={handleChange} required />
-        <input name="courseId" placeholder="Course ID" value={formData.courseId} onChange={handleChange} required />
-        <input name="courseName" placeholder="Course Name" value={formData.courseName} onChange={handleChange} required />
-        <input type="date" name="dueDate" value={formData.dueDate} onChange={handleChange} required />
-        <select name="completed" value={formData.completed} onChange={handleChange}>
-          <option value="no">No</option>
-          <option value="yes">Yes</option>
-        </select>
+        <input type="text" name="name" placeholder="Name" onChange={handleChange} />
+        <input type="text" name="details" placeholder="Details" onChange={handleChange} />
+        <input type="text" name="courseId" placeholder="Course ID" onChange={handleChange} />
+        <input type="text" name="courseName" placeholder="Course Name" onChange={handleChange} />
+        <input type="date" name="dueDate" onChange={handleChange} />
+        <label>
+          Completed:
+          <input type="checkbox" name="completed" onChange={handleChange} />
+        </label>
         <button type="submit">Add Assignment</button>
       </form>
   );
 };
 
-export default AssignmentForm;
+export default AddAssignmentForm;
