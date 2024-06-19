@@ -14,7 +14,7 @@ const EditCoursePage: FC = () => {
   const { data: assignments, error} = useSWR<Assignment>(id ? `/api/assignments/${id}` : null, fetcher);
 
   if (error) return <div>Failed to load</div>;
-  if (!assignments) return <div>Loading...</div>;
+  if (!assignments) return <div className="spinner"></div>;
 
   return (
       <AssignmentForm

@@ -15,7 +15,7 @@ const CoursePage:FC = () => {
 
   if (error) return <div>Failed to load</div>;
   console.log(error)
-  if (!assignments) return <div>Loading...</div>;
+  if (!assignments) return <div className="spinner"></div>;
 
   const handleDelete = async (id: number) => {
     const response = await fetch('/api/assignments', {
@@ -35,7 +35,10 @@ const CoursePage:FC = () => {
   };
 
   return (
-      <AssignmentDetails assignments={assignments} onClose={() => router.push('/assignments')} onEdit={handleEdit} onDelete={handleDelete} />
+      <AssignmentDetails assignments={assignments}
+                         onClose={() => router.push('/assignments')}
+                         onEdit={handleEdit}
+                         onDelete={handleDelete} />
   );
 };
 

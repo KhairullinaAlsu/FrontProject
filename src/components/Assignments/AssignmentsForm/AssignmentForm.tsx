@@ -5,6 +5,7 @@ import useSWR from 'swr';
 import {Assignment} from "@/components/Types/types";
 import {useFormik} from "formik";
 import {assignmentSchema} from "@/components/ValidationSchema/ValidationSchema";
+import styles from "./AssignmentsForm.module.css"
 
 interface AssignmentFormProps {
   assignment?: Assignment;
@@ -15,7 +16,9 @@ interface AssignmentFormProps {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const AssignmentForm:FC<AssignmentFormProps> = ({ assignment, onClose }) => {
-  const { mutate } = useSWR('/api/assignments', fetcher);
+  const { mutate} = useSWR('/api/assignments', fetcher);
+
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -47,90 +50,108 @@ const AssignmentForm:FC<AssignmentFormProps> = ({ assignment, onClose }) => {
     if (assignment) {
       formik.setValues(assignment);
     }
-  }, [assignment, formik]);
+  }, [assignment]);
 
 
   return (
-      <form onSubmit={formik.handleSubmit}>
-        <div>
-          <input
-              type="text"
-              name="courseName"
-              placeholder="Course Name"
-              value={formik.values.courseName}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-          />
-          {formik.touched.courseName && formik.errors.courseName ? (
-              <div>{formik.errors.courseName}</div>
-          ) : null}
-        </div>
-        <div>
-          <input
-              type="text"
-              name="name"
-              placeholder="NameAssignment"
-              value={formik.values.name}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-          />
-          {formik.touched.name && formik.errors.name ? (
-              <div>{formik.errors.name}</div>
-          ) : null}
-        </div>
-        <div>
-          <input
-              type="text"
-              name="details"
-              placeholder="Detals"
-              value={formik.values.details}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-          />
-        </div>
-        <div>
-          <input
-              type="text"
-              name="courseId"
-              placeholder="Course ID"
-              value={formik.values.courseId}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-          />
-          {formik.touched.courseId && formik.errors.courseId ? (
-              <div>{formik.errors.courseId}</div>
-          ) : null}
-        </div>
-        <div>
-          <input
-              type="date"
-              name="dueDate"
-              value={formik.values.dueDate}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-          />
-          {formik.touched.dueDate && formik.errors.dueDate ? (
-              <div>{formik.errors.dueDate}</div>
-          ) : null}
-        </div>
-        <div>
-          <label>
-            Completed
-            <input
-                type="checkbox"
-                name="completed"
-                checked={formik.values.completed}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-            />
-          </label>
-          {formik.touched.completed && formik.errors.completed ? (
-              <div>{formik.errors.completed}</div>
-          ) : null}
-        </div>
-        <button type="submit">{assignment ? 'Update' : 'Add'} Assignment</button>
-        <button onClick={onClose}>Close</button>
-      </form>
+      <>
+        <h1 className="header">Edit</h1>
+        <form onSubmit={formik.handleSubmit} className={styles.container}>
+          <div className={styles.box}>
+            <div className={styles.form}>
+              <div>
+                {formik.touched.courseName && formik.errors.courseName ? (
+                    <div className={styles.error}>{formik.errors.courseName}</div>
+                ) : null}
+                <label>Assignment Name: </label>
+                <input
+                    type="text"
+                    name="courseName"
+                    placeholder="Course Name"
+                    value={formik.values.courseName}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
+              </div>
+              <div>
+                {formik.touched.name && formik.errors.name ? (
+                    <div className={styles.error}>{formik.errors.name}</div>
+                ) : null}
+                <label>Name Assignment: </label>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Name Assignment"
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
+              </div>
+              <div>
+                <label>Description: </label>
+                <input
+                    type="text"
+                    name="details"
+                    placeholder="Detals"
+                    value={formik.values.details}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
+              </div>
+              <div>
+                {formik.touched.courseId && formik.errors.courseId ? (
+                    <div className={styles.error}>{formik.errors.courseId}</div>
+                ) : null}
+                <label>Course ID: </label>
+                <input
+                    type="text"
+                    name="courseId"
+                    placeholder="Course ID"
+                    value={formik.values.courseId}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
+              </div>
+              <div>
+                {formik.touched.dueDate && formik.errors.dueDate ? (
+                    <div className={styles.error}>{formik.errors.dueDate}</div>
+                ) : null}
+                <label>Due Date: </label>
+                <input
+                    type="date"
+                    name="dueDate"
+                    value={formik.values.dueDate}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
+              </div>
+              <div>
+                {formik.touched.completed && formik.errors.completed ? (
+                    <div className={styles.error}>{formik.errors.completed}</div>
+                ) : null}
+                <label>
+                  Completed
+                  <div className={styles.checkbox_container}>
+                    <input
+                        type="checkbox"
+                        name="completed"
+                        checked={formik.values.completed}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
+                    <span className={styles.checkbox}></span>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div className={styles.buttons}>
+              <button type="submit">{assignment ? 'Update' : 'Add'} Assignment</button>
+              <button onClick={onClose}>Close</button>
+            </div>
+          </div>
+        </form>
+      </>
+
   );
 };
 

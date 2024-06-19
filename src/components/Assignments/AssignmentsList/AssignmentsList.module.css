@@ -81,3 +81,27 @@
     border: none;
     border-radius: 20px;
 }
+
+.initial{
+    margin-top: 50px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.initial p{
+    font-size: 35px;
+}
+
+.initial button{
+    position: relative;
+    top: 90px;
+    padding: 20px 40px;
+    font-size: 30px;
+    font-weight: 300;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+}

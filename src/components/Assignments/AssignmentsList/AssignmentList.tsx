@@ -10,7 +10,7 @@ const AssignmentList:FC = () => {
   const { data: assignments, error } = useSWR<Assignment[]>('/api/assignments', fetcher);
 
   if (error) return <div>Failed to load</div>;
-  if (!assignments) return <div>Loading...</div>;
+  if (!assignments) return <div className="spinner"></div>;
 
   return (
       <div className={styles.container}>
@@ -18,7 +18,7 @@ const AssignmentList:FC = () => {
             <div className={styles.initial}>
               <p>No assignments available. Please create a new assignments.</p>
               <Link href="/assignments/new">
-                <button>Add New Assignments</button>
+                <button>Add Assignments</button>
               </Link>
             </div>
         ) : (
