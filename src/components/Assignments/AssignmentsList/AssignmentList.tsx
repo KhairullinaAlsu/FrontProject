@@ -25,19 +25,19 @@ const AssignmentList:FC = () => {
             <div>
               <div className={styles.block_node}>
                 {assignments.map((assignment) => (
-                    <div className={styles.box}>
-                      <div key={assignment.id} className={styles.node}>
-                        <div className={styles.info}>
-                          <h1>{assignment.courseName}</h1>
-                          <span>{assignment.name}</span>
-                        </div>
-                        <div className={styles.button}>
-                        <Link href={`/assignments/${assignment.id}`}>
-                            <button>View More</button>
-                          </Link>
-                        </div>
+                  <div key={assignment.id} className={styles.box}>
+                    <div className={styles.node}>
+                      <div className={styles.info}>
+                        <h1>{assignment.courseName}</h1>
+                        <span>{assignment.name}</span>
+                      </div>
+                      <div className={styles.button}>
+                      <Link href={`/assignments/${assignment.id}`}>
+                          <button>View More</button>
+                      </Link>
                       </div>
                     </div>
+                  </div>
                 ))}
               </div>
               <Link href="/assignments/new" className={styles.add}>

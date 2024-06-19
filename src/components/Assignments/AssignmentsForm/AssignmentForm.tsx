@@ -47,7 +47,7 @@ const AssignmentForm:FC<AssignmentFormProps> = ({ assignment, onClose }) => {
     if (assignment) {
       formik.setValues(assignment);
     }
-  }, [assignment]);
+  }, [assignment, formik]);
 
 
   return (
