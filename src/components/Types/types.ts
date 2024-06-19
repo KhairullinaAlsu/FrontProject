@@ -7,3 +7,15 @@ export interface Assignment {
   dueDate: string;
   completed: boolean;
 }
+
+export interface Course{
+  id?: number;
+  name: string;
+  courseId: string;
+  courseDescription: string;
+  category: string;
+  scheduleDay: string;
+  period: string;
+  hoursStart: string;
+  hoursEnd: string;
+}

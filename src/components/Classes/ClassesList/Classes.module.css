@@ -1,0 +1,107 @@
+.container{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 25px;
+}
+
+.block_node{
+    display: flex;
+    flex-wrap: wrap;
+    width: 800px;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.box{
+    display: flex;
+    flex: 1 1 calc(33.333% - 40px);
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.node{
+    width: 227px;
+    height: 224px;
+    border-radius: 20px;
+    background: #FFFFFF;
+    text-align: center;
+    flex-direction: column;
+}
+
+.info{
+    margin-top: 27px;
+    text-align: left;
+    margin-left: 25px;
+}
+
+.info h1{
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.info span{
+    font-size: 19px;
+    font-weight: 400;
+    color: #555;
+}
+
+.button button{
+    position: relative;
+    top: 90px;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 300;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+}
+
+.node span{
+    margin-top: 10px;
+    display: flex;
+    flex-flow: column;
+}
+
+.add{
+    display: flex;
+    margin-top: 100px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 300;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+}
+
+.initial{
+    margin-top: 50px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.initial p{
+    font-size: 35px;
+}
+
+.initial button{
+    position: relative;
+    top: 90px;
+    padding: 20px 40px;
+    font-size: 30px;
+    font-weight: 300;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+}

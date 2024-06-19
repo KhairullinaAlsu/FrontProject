@@ -1,16 +1,17 @@
-import {FC} from 'react';
+"use client"
+
+import ClassesList from "@/components/Classes/ClassesList/ClassesList";
 
 
 
 
-const Classes: FC = () => {
+export default function Classes() {
 
 
   return (
       <>
-
+        <h1 className="header">Classes</h1>
+        <ClassesList></ClassesList>
       </>
   );
 };
-
-export default Classes;

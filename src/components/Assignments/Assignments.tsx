@@ -2,7 +2,7 @@
 
 import AssignmentList from './AssignmentsList/AssignmentList';
 
-export default function Home() {
+export default function Assignments() {
 
   return (
       <div>

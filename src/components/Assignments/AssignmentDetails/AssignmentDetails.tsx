@@ -12,6 +12,7 @@ interface AssignmentsDetailsProps {
 
 const AssignmentDetails: FC<AssignmentsDetailsProps> = ({ assignments, onClose, onEdit, onDelete }) => {
 
+
   return (
       <>
         <h1 className="header">Details</h1>
