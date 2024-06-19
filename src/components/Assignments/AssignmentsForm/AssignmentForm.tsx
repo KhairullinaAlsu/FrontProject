@@ -55,8 +55,21 @@ const AssignmentForm:FC<AssignmentFormProps> = ({ assignment, onClose }) => {
         <div>
           <input
               type="text"
+              name="courseName"
+              placeholder="Course Name"
+              value={formik.values.courseName}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+          />
+          {formik.touched.courseName && formik.errors.courseName ? (
+              <div>{formik.errors.courseName}</div>
+          ) : null}
+        </div>
+        <div>
+          <input
+              type="text"
               name="name"
-              placeholder="Name"
+              placeholder="NameAssignment"
               value={formik.values.name}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -86,19 +99,6 @@ const AssignmentForm:FC<AssignmentFormProps> = ({ assignment, onClose }) => {
           />
           {formik.touched.courseId && formik.errors.courseId ? (
               <div>{formik.errors.courseId}</div>
-          ) : null}
-        </div>
-        <div>
-          <input
-              type="text"
-              name="courseName"
-              placeholder="Course Name"
-              value={formik.values.courseName}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-          />
-          {formik.touched.courseName && formik.errors.courseName ? (
-              <div>{formik.errors.courseName}</div>
           ) : null}
         </div>
         <div>

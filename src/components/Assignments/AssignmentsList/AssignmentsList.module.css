@@ -2,13 +2,64 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    position: relative;
     margin-top: 40px;
     font-size: 25px;
 }
 
-.node button{
-    margin-top: 20px;
+.block_node{
+    display: flex;
+    flex-wrap: wrap;
+    width: 800px;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.box{
+    display: flex;
+    flex: 1 1 calc(33.333% - 40px);
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.node{
+    width: 227px;
+    height: 224px;
+    border-radius: 20px;
+    background: #FFFFFF;
+    text-align: center;
+    flex-direction: column;
+}
+
+.info{
+    margin-top: 27px;
+    text-align: left;
+    margin-left: 25px;
+}
+
+.info h1{
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.info span{
+    font-size: 19px;
+    font-weight: 400;
+    color: #555;
+}
+
+.button button{
+    position: relative;
+    top: 90px;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 300;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
 }
 
 .node span{
@@ -18,6 +69,15 @@
 }
 
 .add{
-    position: relative;
-    top: 200px;
+    display: flex;
+    margin-top: 100px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 300;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
 }
