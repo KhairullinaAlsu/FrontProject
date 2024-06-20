@@ -13,7 +13,15 @@ interface ClassesFormProps {
 }
 
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = async (url: string) => {
+  const token = localStorage.getItem('token');
+  let res = await fetch(url, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  return await res.json();
+};
 
 const ClassesForm:FC<ClassesFormProps> = ({ course, onClose }) => {
   const { mutate} = useSWR('/api/classes', fetcher);
@@ -32,10 +40,12 @@ const ClassesForm:FC<ClassesFormProps> = ({ course, onClose }) => {
     },
     validationSchema: classSchema,
     onSubmit: async (values) => {
+      const token = localStorage.getItem('token');
       const method = course ? 'PUT' : 'POST';
       const response = await fetch(`/api/classes${course ? `/${course.id}` : ''}`, {
         method,
         headers: {
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(values),

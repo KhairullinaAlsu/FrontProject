@@ -1,3 +1,6 @@
 export * from "./Layout"
 export * from "./MainPage"
 export * from "./Assignments"
+export * from "./Classes"
+export * from "./Auth"
+export * from "./PrivateRoute"

@@ -8,6 +8,27 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
+model User {
+  id            Int      @id @default(autoincrement())
+  email         String   @unique
+  password      String
+  name          String
+  course        String
+  assignments   Assignment[]
+  classes       Course[]
+  sessions      Session[]
+
+}
+
+model Session {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Assignment {
   id          Int      @id @default(autoincrement())
   name        String
@@ -18,18 +39,22 @@ model Assignment {
   completed   Boolean
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
 }
 
 model Course {
-  id               Int      @id @default(autoincrement())
-  name             String
-  courseId         String
+  id                Int      @id @default(autoincrement())
+  name              String
+  courseId          String
   courseDescription String
-  category         String
-  scheduleDay      String
-  period           String
-  hoursStart       String
-  hoursEnd         String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  category          String
+  scheduleDay       String
+  period            String
+  hoursStart        String
+  hoursEnd          String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  userId            Int
+  user              User     @relation(fields: [userId], references: [id])
 }

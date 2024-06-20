@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from 'next/navigation';
-import AssignmentForm from '@/components/Assignments/AssignmentsForm/AssignmentForm';
+import { AssignmentForm } from '@/components';
 import {FC} from "react";
 
 const NewCoursePage:FC = () => {

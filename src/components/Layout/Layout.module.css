@@ -36,7 +36,7 @@
     text-decoration: underline;
 }
 
-/*.main, .assignments, .classes, .log_in{*/
-/*    */
-/*}*/
+.box .logout {
+   color: red;
+}
 

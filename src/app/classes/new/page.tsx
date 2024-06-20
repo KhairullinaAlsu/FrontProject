@@ -1,8 +1,8 @@
 "use client"
 
 import { useRouter } from 'next/navigation';
-import {FC} from "react";
-import {ClassesForm} from "@/components/Classes/ClassesForm";
+import { FC } from "react";
+import { ClassesForm } from "@/components";
 
 const NewCoursePage:FC = () => {
   const router = useRouter();

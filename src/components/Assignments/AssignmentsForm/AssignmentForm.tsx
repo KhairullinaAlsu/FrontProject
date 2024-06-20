@@ -13,8 +13,15 @@ interface AssignmentFormProps {
 }
 
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
+const fetcher = async (url: string) => {
+  const token = localStorage.getItem('token');
+  let res = await fetch(url, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  return await res.json();
+};
 const AssignmentForm:FC<AssignmentFormProps> = ({ assignment, onClose }) => {
   const { mutate} = useSWR('/api/assignments', fetcher);
 
@@ -30,16 +37,18 @@ const AssignmentForm:FC<AssignmentFormProps> = ({ assignment, onClose }) => {
     },
     validationSchema: assignmentSchema,
     onSubmit: async (values) => {
+      const token = localStorage.getItem('token');
       const method = assignment ? 'PUT' : 'POST';
       const response = await fetch(`/api/assignments${assignment ? `/${assignment.id}` : ''}`, {
         method,
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(values),
       });
       if (response.ok) {
-        mutate();
+        await mutate();
         onClose();
       }
     },

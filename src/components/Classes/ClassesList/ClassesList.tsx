@@ -1,20 +1,51 @@
+"use client"
+
 import Link from 'next/link';
 import useSWR from 'swr';
-import { Course } from '../../Types/types';
-import {FC} from "react";
+import {FC, useEffect} from "react";
 import styles from './Classes.module.css'
+import {useRouter} from "next/navigation";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = async (url: string) => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    throw new Error('Unauthorized');
+  }
 
-const ClassesList:FC = () => {
-  const { data: classes, error } = useSWR<Course[]>('/api/classes', fetcher);
+  let res = await fetch(url, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
 
-  if (error) return <div>Failed to load</div>;
-  if (!classes) return <div className="spinner"></div>;
+  if (res.status === 401) {
+    throw new Error('Unauthorized');
+  }
+
+  return await res.json();
+};
+
+const ClassesList: FC = () => {
+  const router = useRouter();
+  const { data: course, error } = useSWR('/api/classes', fetcher);
+
+  useEffect(() => {
+    if (error && error.message === 'Unauthorized') {
+      router.push('/auth/signin');
+    }
+  }, [error, router]);
+
+  if (!course) return <div className="spinner"></div>;
+
+  if (!Array.isArray(course)) {
+    console.error('Unexpected response:', course);
+    return <div>Unexpected response from server</div>;
+  }
+
 
   return (
       <div className={styles.container}>
-        {classes.length === 0 ? (
+        {course.length === 0 ? (
             <div className={styles.initial}>
               <p>No courses available. Please create a new course.</p>
               <Link href="/classes/new">
@@ -24,7 +55,7 @@ const ClassesList:FC = () => {
         ) : (
             <div>
               <div className={styles.block_node}>
-                {classes.map((course) => (
+                {course.map((course) => (
                   <div key={course.id} className={styles.box}>
                     <div className={styles.node}>
                       <div className={styles.info}>

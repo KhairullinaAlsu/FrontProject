@@ -3,8 +3,8 @@
 import { useParams, useRouter } from 'next/navigation';
 import useSWR from 'swr';
 import { Course } from '@/components/Types/types';
-import {FC} from "react";
-import {ClassesForm} from "@/components/Classes/ClassesForm";
+import { FC } from "react";
+import { ClassesForm } from "@/components";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 

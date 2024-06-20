@@ -2,12 +2,19 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import useSWR from 'swr';
-import AssignmentDetails from '@/components/Assignments/AssignmentDetails/AssignmentDetails';
+import { AssignmentDetails } from '@/components';
 import { Assignment } from '@/components/Types/types';
 import {FC} from "react";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
+const fetcher = async (url: string) => {
+  const token = localStorage.getItem('token');
+  let res = await fetch(url, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  });
+  return await res.json();
+};
 const CoursePage:FC = () => {
   const { id } = useParams();
   const router = useRouter();
@@ -18,10 +25,12 @@ const CoursePage:FC = () => {
   if (!assignments) return <div className="spinner"></div>;
 
   const handleDelete = async (id: number) => {
+    const token = localStorage.getItem('token');
     const response = await fetch('/api/assignments', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({ id }),
     });
@@ -35,7 +44,7 @@ const CoursePage:FC = () => {
   };
 
   return (
-      <AssignmentDetails assignments={assignments}
+      <AssignmentDetails assignmentId={assignments.id!}
                          onClose={() => router.push('/assignments')}
                          onEdit={handleEdit}
                          onDelete={handleDelete} />

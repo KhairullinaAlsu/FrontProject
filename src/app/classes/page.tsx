@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import Classes from "@/components/Classes/Classes";
+import { Classes } from "@/components";
 
 
 
