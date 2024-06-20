@@ -1,13 +1,13 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import {FC, useEffect, useState} from 'react';
 import { useRouter } from 'next/navigation';
 import { PrivateRoute } from '@/components';
 import { MainPage } from '@/components';
 import Link from "next/link";
 import styles from './page.module.css';
 
-const ProfilePage: React.FC = () => {
+const ProfilePage: FC = () => {
   const [user, setUser] = useState<{ name: string; course: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -16,8 +16,10 @@ const ProfilePage: React.FC = () => {
     const token = localStorage.getItem('token');
     if (!token) {
       setLoading(false);
+      setUser(null);
+      router.push('/');
     } else {
-      fetch('/api/auth', {
+      fetch('/api/auth/user', {
         headers: { Authorization: `Bearer ${token}` },
       })
           .then((res) => res.json())
@@ -25,8 +27,10 @@ const ProfilePage: React.FC = () => {
             if (data.message === 'Unauthorized') {
               localStorage.removeItem('token');
               setLoading(false);
+              setUser(null);
+              router.push('/');
             } else {
-              setUser(data.user);
+              setUser(data);
               setLoading(false);
             }
           });
@@ -35,21 +39,23 @@ const ProfilePage: React.FC = () => {
 
   const handleLogout = async () => {
     const token = localStorage.getItem('token');
-    await fetch('/api/logout', {
+    await fetch('/api/auth/logout', {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
     });
     localStorage.removeItem('token');
+    setUser(null);
     router.push('/auth/signin');
   };
 
   const handleDeleteProfile = async () => {
     const token = localStorage.getItem('token');
-    await fetch('/api/delete_profile', {
+    await fetch('/api/auth/delete_profile', {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     });
     localStorage.removeItem('token');
+    setUser(null);
     router.push('/auth/signin');
   };
 
